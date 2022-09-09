@@ -1,6 +1,6 @@
 const fs = require("fs")
 const { ethers } = require("hardhat")
-const { hrtime } = require("process")
+let { networkConfig } = require('../helper-hardhat-config')
 
 module.exports = async ({
     getNamedAccounts,
@@ -21,8 +21,12 @@ module.exports = async ({
     let svg = fs.readFileSync(filepath, { encoding: "utf8"})
 
     const svgNFTContract = await ethers.getContractFactory("SVGNFT")
-    const accounts = await hrtime.ethers.getSigners()
+    const accounts = await hre.ethers.getSigners()
     const signer = accounts[0]
     const svgNFT = new ethers.Contract(SVGNFT.address, svgNFTContract.interface, signer)
+    const networkName = networkConfig[chainId]['name']
+    log(`Verify with: \n npx hardhat verify --network ${networkName} ${svgNFT.address}`)
+
+
     
 }
