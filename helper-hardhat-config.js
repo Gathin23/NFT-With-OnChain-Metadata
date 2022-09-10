@@ -1,4 +1,4 @@
-const NetworkConfig = {
+const networkConfig = {
     31337: {
         name: 'localhost'
     },
@@ -8,5 +8,5 @@ const NetworkConfig = {
 }
 
 module.exports = {
-    NetworkConfig
+    networkConfig
 }
